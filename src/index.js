@@ -29,33 +29,45 @@ function displayElement(arr) {
   const orderedList = orderToDisplay(arr);
   orderedList.forEach((e) => {
     const elementContainer = document.createElement('div');
-    elementContainer.classList.add('row', 'justify-content-center', 'align-items-baseline');
+    elementContainer.classList.add('row', 'justify-content-center', 'align-items-baseline', 'border-top');
     toDoListCointainer.appendChild(elementContainer);
 
     const checkBoxContainer = document.createElement('div');
-    const statusCheckBox = document.createElement('input');
-    checkBoxContainer.classList.add('col-1', 'justify-self-center', 'align-self-center');
-    statusCheckBox.setAttribute('type', 'checkbox');
-    statusCheckBox.classList.add('align-self-center');
-    checkBoxContainer.appendChild(statusCheckBox);
+    const checkBoxSpan = document.createElement('span');
+    const checkBoxIcon = document.createElement('i');
+    checkBoxContainer.classList.add('col-1', 'checkBoxContainer');
+    checkBoxSpan.classList.add('checkBoxSpan');
+    checkBoxIcon.classList.add('fas', 'fa-check');
+    checkBoxContainer.appendChild(checkBoxSpan);
+    checkBoxContainer.appendChild(checkBoxIcon);
     elementContainer.appendChild(checkBoxContainer);
+
+    checkBoxSpan.addEventListener('click', () => {
+      checkBoxSpan.style.display = 'none';
+      checkBoxIcon.style.display = 'block';
+    });
+
+    checkBoxIcon.addEventListener('click', () => {
+      checkBoxSpan.style.display = 'block';
+      checkBoxIcon.style.display = 'none';
+    });
 
     const description = document.createElement('p');
     description.innerText = e.description;
-    description.classList.add('col-2', 'align-self-center');
+    description.classList.add('col-10', 'align-self-center');
     elementContainer.appendChild(description);
 
     const iconContainer = document.createElement('div');
     const icon = document.createElement('i');
     iconContainer.classList.add('col-1', 'd-flex', 'justify-content-end');
-    icon.classList.add('fas', 'fa-ellipsis-v', 'mt-1');
+    icon.classList.add('fas', 'fa-ellipsis-v', 'mt-1', 'me-3');
     iconContainer.appendChild(icon);
     elementContainer.appendChild(iconContainer);
   });
   const clearAllButtonContainer = document.createElement('div');
   const clearAllButton = document.createElement('button');
   clearAllButtonContainer.classList.add('row', 'justify-content-center');
-  clearAllButton.classList.add('col-4');
+  clearAllButton.classList.add('col-12');
   clearAllButton.id = 'clearAllButton';
   clearAllButton.innerText = 'Clear all completed';
   toDoListCointainer.appendChild(clearAllButtonContainer);
