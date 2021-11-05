@@ -8,7 +8,20 @@
 </head>
 <body>
     <section class="container" id="toDoListContainer">
-        <h1 class="row justify-content-center">To do list</h1>
+        <div class="row justify-content-center">
+            <div class="col-4 d-flex justify-content-between">
+                <p class="">
+                    Today's to do
+                </p>
+                <i class="fas fa-sync-alt me-1"></i>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4 position-relative">
+                <input class="col-12" type="text" id="newTaskInput" placeholder="Add to your list...">
+                <i class="fas fa-level-down-alt position-absolute"></i>
+            </div>
+        </div>
     </section>
 </body>
 </html>
