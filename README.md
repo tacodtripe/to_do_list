@@ -11,7 +11,6 @@ This is a basic application where you can write up your to do task and update it
 ## Getting Started - How to deploy on your machine
 
 - Clone the project
-- If webpack it's not installed in your machine use `npm install webpack webpack-cli --save-dev`
 - run `npm start` at your command line
 
 ### Prerequisites
