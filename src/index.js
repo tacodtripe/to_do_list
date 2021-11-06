@@ -4,7 +4,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
-import { addTask } from './modules/crud.js';
+import { addTask, editDescription } from './modules/crud.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
 const newTaskInput = document.getElementById('newTaskInput');
@@ -70,9 +70,28 @@ function displayElement(arr) {
     });
 
     const description = document.createElement('p');
+    const newDescription = document.createElement('input');
     description.innerText = e.description;
     description.classList.add('col-10', 'align-self-center');
+    newDescription.classList.add('col-10', 'align-self-center');
+    newDescription.style.display = 'none';
     elementContainer.appendChild(description);
+    elementContainer.appendChild(newDescription);
+
+    description.addEventListener('click', () => {
+      description.style.display = 'none';
+      newDescription.style.display = 'block';
+    });
+
+    newDescription.addEventListener('keypress', (n) => {
+      if (n.key === 'Enter') {
+        editDescription(e, newDescription.value);
+        newDescription.style.display = 'none';
+        description.style.display = 'block';
+        updateLocalStorage(orderedList);
+        displayElement(JSON.parse(localStorage.getItem('toDoList')));
+      }
+    });
 
     const iconContainer = document.createElement('div');
     const icon = document.createElement('i');
@@ -98,5 +117,6 @@ newTaskInput.addEventListener('keypress', (e) => {
     displayElement(JSON.parse(localStorage.getItem('toDoList')));
   }
 });
+
 setLocalStorage(toDoList);
 displayElement(JSON.parse(localStorage.getItem('toDoList')));
