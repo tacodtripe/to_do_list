@@ -12,18 +12,6 @@ const toDoListCointainer = document.getElementById('toDoListContainer');
 const newTaskInput = document.getElementById('newTaskInput');
 const toDoList = [];
 
-function orderToDisplay(arr) {
-  const orderedList = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    arr.forEach((e) => {
-      if (i === e.taskindex) {
-        orderedList.push(e);
-      }
-    });
-  }
-  return orderedList;
-}
-
 function cleanDisplay(arr) {
   while (arr.firstChild) {
     arr.removeChild(arr.firstChild);
@@ -31,9 +19,8 @@ function cleanDisplay(arr) {
 }
 
 function displayElement(arr) {
-  let orderedList = orderToDisplay(arr);
   cleanDisplay(toDoListCointainer);
-  orderedList.forEach((e) => {
+  arr.forEach((e) => {
     const elementContainer = document.createElement('div');
     elementContainer.classList.add('row', 'justify-content-center', 'align-items-baseline', 'border-top');
     toDoListCointainer.appendChild(elementContainer);
@@ -61,14 +48,14 @@ function displayElement(arr) {
       checkBoxSpan.style.display = 'none';
       checkBoxIcon.style.display = 'block';
       e.completed = true;
-      updateLocalStorage(orderedList);
+      updateLocalStorage(arr);
     });
 
     checkBoxIcon.addEventListener('click', () => {
       checkBoxSpan.style.display = 'block';
       checkBoxIcon.style.display = 'none';
       e.completed = false;
-      updateLocalStorage(orderedList);
+      updateLocalStorage(arr);
     });
 
     const description = document.createElement('p');
@@ -90,7 +77,7 @@ function displayElement(arr) {
         editDescription(e, newDescription.value);
         newDescription.style.display = 'none';
         description.style.display = 'block';
-        updateLocalStorage(orderedList);
+        updateLocalStorage(arr);
         displayElement(JSON.parse(localStorage.getItem('toDoList')));
       }
     });
@@ -106,10 +93,9 @@ function displayElement(arr) {
     elementContainer.appendChild(iconContainer);
 
     deleteIcon.addEventListener('click', () => {
-      const filteredList = deleteTask(orderedList, e.taskindex);
-      updateTaskIndex(filteredList);
-      orderedList = filteredList;
-      updateLocalStorage(orderedList);
+      arr = deleteTask(arr, e.taskindex);
+      updateTaskIndex(arr);
+      updateLocalStorage(arr);
       displayElement(JSON.parse(localStorage.getItem('toDoList')));
     });
   });
@@ -121,12 +107,23 @@ function displayElement(arr) {
   clearAllButton.innerText = 'Clear all completed';
   toDoListCointainer.appendChild(clearAllButtonContainer);
   clearAllButtonContainer.appendChild(clearAllButton);
+
+  clearAllButton.addEventListener('click', () => {
+    const currentList = JSON.parse(localStorage.getItem('toDoList'));
+    currentList.forEach((n) => {
+      if (n.completed === true) {
+        console.log(n);
+      }
+    });
+  });
 }
 
 newTaskInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
-    addTask(toDoList, newTaskInput.value, toDoList.length);
-    updateLocalStorage(toDoList);
+    const arrayToPush = JSON.parse(localStorage.getItem('toDoList'));
+    addTask(arrayToPush, newTaskInput.value, toDoList.length);
+    updateTaskIndex(arrayToPush);
+    updateLocalStorage(arrayToPush);
     displayElement(JSON.parse(localStorage.getItem('toDoList')));
   }
 });
