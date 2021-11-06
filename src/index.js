@@ -109,12 +109,11 @@ function displayElement(arr) {
   clearAllButtonContainer.appendChild(clearAllButton);
 
   clearAllButton.addEventListener('click', () => {
-    const currentList = JSON.parse(localStorage.getItem('toDoList'));
-    currentList.forEach((n) => {
-      if (n.completed === true) {
-        console.log(n);
-      }
-    });
+    let currentList = JSON.parse(localStorage.getItem('toDoList'));
+    currentList = currentList.filter((task) => task.completed !== true);
+    updateTaskIndex(currentList);
+    updateLocalStorage(currentList);
+    displayElement(JSON.parse(localStorage.getItem('toDoList')));
   });
 }
 
