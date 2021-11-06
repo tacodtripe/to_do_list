@@ -1,6 +1,6 @@
-# Webpack Boilerplate
+# To Do List application
 
-This is a template to be the start point for future projects where webpack is involved.
+This is a basic application where you can write up your to do task and update it as you complete them.
 
 ## Built With
 
