@@ -4,7 +4,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
-import { addTask, editDescription } from './modules/crud.js';
+import {
+  addTask, editDescription, deleteTask, updateTaskIndex,
+} from './modules/crud.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
 const newTaskInput = document.getElementById('newTaskInput');
@@ -14,7 +16,7 @@ function orderToDisplay(arr) {
   const orderedList = [];
   for (let i = 0; i < arr.length; i += 1) {
     arr.forEach((e) => {
-      if (i === e.index) {
+      if (i === e.taskindex) {
         orderedList.push(e);
       }
     });
@@ -29,7 +31,7 @@ function cleanDisplay(arr) {
 }
 
 function displayElement(arr) {
-  const orderedList = orderToDisplay(arr);
+  let orderedList = orderToDisplay(arr);
   cleanDisplay(toDoListCointainer);
   orderedList.forEach((e) => {
     const elementContainer = document.createElement('div');
@@ -94,11 +96,22 @@ function displayElement(arr) {
     });
 
     const iconContainer = document.createElement('div');
-    const icon = document.createElement('i');
+    const moveIcon = document.createElement('i');
+    const deleteIcon = document.createElement('i');
     iconContainer.classList.add('col-1', 'd-flex', 'justify-content-end');
-    icon.classList.add('fas', 'fa-ellipsis-v', 'mt-1', 'me-3');
-    iconContainer.appendChild(icon);
+    moveIcon.classList.add('fas', 'fa-ellipsis-v', 'mt-1', 'me-3');
+    deleteIcon.classList.add('fas', 'fa-trash-alt', 'mt-1');
+    iconContainer.appendChild(moveIcon);
+    iconContainer.appendChild(deleteIcon);
     elementContainer.appendChild(iconContainer);
+
+    deleteIcon.addEventListener('click', () => {
+      const filteredList = deleteTask(orderedList, e.taskindex);
+      updateTaskIndex(filteredList);
+      orderedList = filteredList;
+      updateLocalStorage(orderedList);
+      displayElement(JSON.parse(localStorage.getItem('toDoList')));
+    });
   });
   const clearAllButtonContainer = document.createElement('div');
   const clearAllButton = document.createElement('button');
