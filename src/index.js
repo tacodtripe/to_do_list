@@ -4,15 +4,11 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
+import { addTask } from './modules/crud.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
-
-const toDoList = [
-  { description: 'demo 1 index 2', completed: false, index: 2 },
-  { description: 'demo 2 index 1', completed: false, index: 1 },
-  { description: 'demo 3 index 0', completed: false, index: 0 },
-  { description: 'demo 4 index 3', completed: false, index: 3 },
-];
+const newTaskInput = document.getElementById('newTaskInput');
+const toDoList = [];
 
 function orderToDisplay(arr) {
   const orderedList = [];
@@ -26,8 +22,15 @@ function orderToDisplay(arr) {
   return orderedList;
 }
 
+function cleanDisplay(arr) {
+  while (arr.firstChild) {
+    arr.removeChild(arr.firstChild);
+  }
+}
+
 function displayElement(arr) {
   const orderedList = orderToDisplay(arr);
+  cleanDisplay(toDoListCointainer);
   orderedList.forEach((e) => {
     const elementContainer = document.createElement('div');
     elementContainer.classList.add('row', 'justify-content-center', 'align-items-baseline', 'border-top');
@@ -88,5 +91,12 @@ function displayElement(arr) {
   clearAllButtonContainer.appendChild(clearAllButton);
 }
 
+newTaskInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    addTask(toDoList, newTaskInput.value, toDoList.length);
+    updateLocalStorage(toDoList);
+    displayElement(JSON.parse(localStorage.getItem('toDoList')));
+  }
+});
 setLocalStorage(toDoList);
 displayElement(JSON.parse(localStorage.getItem('toDoList')));
