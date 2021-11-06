@@ -3,14 +3,15 @@ import _ from 'lodash';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
+import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
 
 const toDoList = [
-  { description: 'demo 1 index 2', completed: true, index: 2 },
+  { description: 'demo 1 index 2', completed: false, index: 2 },
   { description: 'demo 2 index 1', completed: false, index: 1 },
   { description: 'demo 3 index 0', completed: false, index: 0 },
-  { description: 'demo 4 index 3', completed: true, index: 3 },
+  { description: 'demo 4 index 3', completed: false, index: 3 },
 ];
 
 function orderToDisplay(arr) {
@@ -42,14 +43,27 @@ function displayElement(arr) {
     checkBoxContainer.appendChild(checkBoxIcon);
     elementContainer.appendChild(checkBoxContainer);
 
+    if (e.completed === true) {
+      checkBoxSpan.style.display = 'none';
+      checkBoxIcon.style.display = 'block';
+    }
+    if (e.completed === false) {
+      checkBoxSpan.style.display = 'block';
+      checkBoxIcon.style.display = 'none';
+    }
+
     checkBoxSpan.addEventListener('click', () => {
       checkBoxSpan.style.display = 'none';
       checkBoxIcon.style.display = 'block';
+      e.completed = true;
+      updateLocalStorage(orderedList);
     });
 
     checkBoxIcon.addEventListener('click', () => {
       checkBoxSpan.style.display = 'block';
       checkBoxIcon.style.display = 'none';
+      e.completed = false;
+      updateLocalStorage(orderedList);
     });
 
     const description = document.createElement('p');
@@ -74,4 +88,5 @@ function displayElement(arr) {
   clearAllButtonContainer.appendChild(clearAllButton);
 }
 
-displayElement(toDoList);
+setLocalStorage(toDoList);
+displayElement(JSON.parse(localStorage.getItem('toDoList')));
