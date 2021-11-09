@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tacodtripe/webpack_boilerplate.git"
+    "url": "git+https://github.com/tacodtripe/to-do-list.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tacodtripe/webpack_boilerplate/issues"
+    "url": "https://github.com/tacodtripe/to-do-list/issues"
   },
-  "homepage": "https://github.com/tacodtripe/webpack_boilerplate#readme",
+  "homepage": "https://github.com/tacodtripe/to_do_list/tree/development/dist",
   "devDependencies": {
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
