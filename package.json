@@ -1,5 +1,5 @@
 {
-  "name": "webpack_boilerplate",
+  "name": "to-do-list",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/tacodtripe/to-do-list/issues"
   },
-  "homepage": "https://github.com/tacodtripe/to-do-list/dist",
+  "homepage": "https://github.com/tacodtripe/to_do_list/tree/development/dist",
   "devDependencies": {
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
