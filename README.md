@@ -8,6 +8,10 @@ This is a basic application where you can write up your to do task and update it
 - HTML
 - CSS
 
+## Live Demo
+
+- [click here](https://tacodtripe.github.io/to_do_list/)
+
 ## Getting Started - How to deploy on your machine
 
 - Clone the project
