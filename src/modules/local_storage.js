@@ -2,7 +2,7 @@
 
 function setLocalStorage(arr) {
   if (!localStorage.getItem('toDoList')) {
-    const toDoList = localStorage.setItem('toDoList', JSON.stringify(arr));
+    localStorage.setItem('toDoList', JSON.stringify(arr));
   }
 }
 
