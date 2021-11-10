@@ -1,0 +1,82 @@
+p {
+  margin: 0;
+}
+
+button {
+  background-color: rgb(241, 241, 241);
+  border: none;
+}
+
+.checkBoxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+input:nth-of-type(1) {
+  border: none;
+  font-style: italic;
+}
+
+input:nth-of-type(1):focus-visible {
+  outline: none;
+}
+
+.border-top {
+  border-top: solid 1px gainsboro;
+}
+
+.checkBoxContainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkBoxSpan {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  border: solid 1px gainsboro;
+  top: -15px;
+  box-shadow: 0 0 1px 1px gainsboro;
+  left: 15px;
+}
+
+.checkBoxContainer:hover input ~ .checkBoxSpan {
+  background-color: #f3f3f3;
+}
+
+.checkBoxContainer input:checked ~ .checkBoxSpan {
+  background-color: gray;
+}
+
+.fas {
+  width: 24px;
+  color: gainsboro;
+}
+
+.fa-level-down-alt {
+  top: 0.8rem;
+  right: 1.5rem;
+  transform: rotate(90deg);
+}
+
+.fa-check {
+  color: rgb(24, 164, 245);
+}
+
+.wrapper {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#clearAllButton:hover {
+  text-decoration: underline;
+}
