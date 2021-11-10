@@ -23,6 +23,10 @@ This is a basic application where you can write up your to do task and update it
 - Text Editor (VSCode for example)
 - Browser
 
+### Testing
+
+- At your terminal run `npm run test`
+
 ## Author
 
 👤 **Raul Figueroa**
