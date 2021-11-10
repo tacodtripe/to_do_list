@@ -18,6 +18,10 @@ function updateTaskIndex(arr) {
   });
 }
 
+function toogleBoolean(element) {
+  element.completed = !element.completed;
+}
+
 export {
-  addTask, editDescription, deleteTask, updateTaskIndex,
+  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean,
 };

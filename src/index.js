@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
 import {
-  addTask, editDescription, deleteTask, updateTaskIndex,
+  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean,
 } from './modules/crud.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
@@ -47,14 +47,14 @@ function displayElement(arr) {
     checkBoxSpan.addEventListener('click', () => {
       checkBoxSpan.style.display = 'none';
       checkBoxIcon.style.display = 'block';
-      e.completed = true;
+      e = toogleBoolean(e);
       updateLocalStorage(arr);
     });
 
     checkBoxIcon.addEventListener('click', () => {
       checkBoxSpan.style.display = 'block';
       checkBoxIcon.style.display = 'none';
-      e.completed = false;
+      e = toogleBoolean(e);
       updateLocalStorage(arr);
     });
 
