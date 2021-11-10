@@ -8,7 +8,7 @@ function editDescription(element, newDescription) {
 }
 
 function deleteTask(arr, elementId) {
-   return arr.filter((task, index, array) => array[index] !== arr[elementId]);
+  return arr.filter((task, index, array) => array[index] !== arr[elementId]);
 }
 
 function updateTaskIndex(arr) {
