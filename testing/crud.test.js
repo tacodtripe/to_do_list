@@ -18,3 +18,15 @@ describe('Add task is working', () => {
     expect(tasks[1].taskindex).toBe(1);
   })
 })
+
+describe('Delete task from Array', ()  => {
+  let tasks = [];
+  tasks = addTask(tasks, 'example1', tasks.length);
+  tasks = addTask(tasks, 'example2', tasks.length);
+
+  test('Task deleted from Tasks Array', () => { 
+  expect(deleteTask(tasks, 0)).toHaveLength(1)
+  })
+
+
+ });
