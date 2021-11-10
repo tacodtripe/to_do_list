@@ -1,5 +1,6 @@
 function addTask(arr, taskDescription, taskIndex) {
   arr.push({ description: taskDescription, completed: false, taskindex: taskIndex });
+  return arr;
 }
 
 function editDescription(element, newDescription) {
