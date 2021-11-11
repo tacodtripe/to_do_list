@@ -1,10 +1,15 @@
 import cleanDisplay from '../src/index.js';
-//import toDoListCointainer from './__mocks__/dom.js';
-jest.mock('./__mocks__/dom.js')
 
+describe('DOM element manipulated', () => {
+  document.body.innerHTML = 
+  '<div id="toDoListContainer">' +
+  ' <div>' +
+  ' </div>' +
+  ' <div>' +
+  ' </div>' +
+  '</div>';
 
-describe('DOM elemented manupulated', () => {
-  const dom = toDoListCointainer;
+  const dom = document.querySelector('#toDoListContainer');
 
   test('Task container cleared', () => {
     expect(cleanDisplay(dom)).toStrictEqual('<div id="toDoListContainer"></div>');
