@@ -129,3 +129,5 @@ newTaskInput.addEventListener('keypress', (e) => {
 
 setLocalStorage(toDoList);
 displayElement(JSON.parse(localStorage.getItem('toDoList')));
+
+export default cleanDisplay;
