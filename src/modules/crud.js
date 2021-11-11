@@ -4,7 +4,8 @@ function addTask(arr, taskDescription, taskIndex) {
 }
 
 function editDescription(element, newDescription) {
-  element.description = newDescription;
+   element.description = newDescription;
+   return element;
 }
 
 function deleteTask(arr, elementId) {
