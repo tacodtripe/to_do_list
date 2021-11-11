@@ -5,18 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
 import {
-  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean,
+  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean, deleteCompleted,
 } from './modules/crud.js';
+import cleanDisplay from './modules/cleanDisplay.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
 const newTaskInput = document.getElementById('newTaskInput');
 const toDoList = [];
-
-function cleanDisplay(arr) {
-  while (arr.firstChild) {
-    arr.removeChild(arr.firstChild);
-  }
-}
 
 function displayElement(arr) {
   cleanDisplay(toDoListCointainer);
@@ -110,7 +105,7 @@ function displayElement(arr) {
 
   clearAllButton.addEventListener('click', () => {
     let currentList = JSON.parse(localStorage.getItem('toDoList'));
-    currentList = currentList.filter((task) => task.completed !== true);
+    currentList = deleteCompleted(currentList);
     updateTaskIndex(currentList);
     updateLocalStorage(currentList);
     displayElement(JSON.parse(localStorage.getItem('toDoList')));
@@ -129,3 +124,5 @@ newTaskInput.addEventListener('keypress', (e) => {
 
 setLocalStorage(toDoList);
 displayElement(JSON.parse(localStorage.getItem('toDoList')));
+
+export default cleanDisplay;
