@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { setLocalStorage, updateLocalStorage } from './modules/local_storage.js';
 import {
-  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean,
+  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean, deleteCompleted,
 } from './modules/crud.js';
 
 const toDoListCointainer = document.getElementById('toDoListContainer');
@@ -110,7 +110,7 @@ function displayElement(arr) {
 
   clearAllButton.addEventListener('click', () => {
     let currentList = JSON.parse(localStorage.getItem('toDoList'));
-    currentList = currentList.filter((task) => task.completed !== true);
+    currentList = deleteCompleted(currentList);
     updateTaskIndex(currentList);
     updateLocalStorage(currentList);
     displayElement(JSON.parse(localStorage.getItem('toDoList')));

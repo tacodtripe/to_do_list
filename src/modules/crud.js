@@ -21,8 +21,13 @@ function updateTaskIndex(arr) {
 
 function toogleBoolean(element) {
   element.completed = !element.completed;
+  return element;
+}
+
+function deleteCompleted(arr) {
+  return arr.filter((task) => task.completed !== true);
 }
 
 export {
-  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean,
+  addTask, editDescription, deleteTask, updateTaskIndex, toogleBoolean, deleteCompleted,
 };
