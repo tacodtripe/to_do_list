@@ -23,7 +23,11 @@
   "homepage": "https://github.com/tacodtripe/to_do_list/tree/development/dist",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "babel-eslint": "^10.1.0",
     "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
     "style-loader": "^3.3.1",
@@ -44,7 +48,7 @@
     "lodash": "^4.17.21",
     "popper.js": "^1.16.1"
   },
-  "jest":{
+  "jest": {
     "testEnvironment": "jsdom"
   }
 }

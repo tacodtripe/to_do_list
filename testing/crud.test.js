@@ -1,4 +1,6 @@
-import { addTask, deleteTask, toogleBoolean, editDescription, deleteCompleted } from '../src/modules/crud.js';
+import {
+  addTask, deleteTask, toogleBoolean, editDescription, deleteCompleted,
+} from '../src/modules/crud.js';
 
 describe('Add task is working', () => {
   let tasks = [];
@@ -61,12 +63,12 @@ describe('Clear all completed', () => {
   tasks = addTask(tasks, 'example2', tasks.length);
   tasks = addTask(tasks, 'example3', tasks.length);
   toogleBoolean(tasks[1]);
-  toogleBoolean(tasks[2])
+  toogleBoolean(tasks[2]);
 
   test('Completed tasks are deleted', () => {
     expect(deleteCompleted(tasks)).toHaveLength(1);
   });
   test('Only completed tasks are deleted', () => {
-    expect(deleteCompleted(tasks)).toStrictEqual([{ description: 'example1', completed: false, taskindex: 0 }]);;
+    expect(deleteCompleted(tasks)).toStrictEqual([{ description: 'example1', completed: false, taskindex: 0 }]);
   });
 });
